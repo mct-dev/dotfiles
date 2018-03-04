@@ -1,0 +1,40 @@
+call plug#begin('~/.vim/plugged')
+
+"Fugitive Vim Github Wrapper
+Plug 'tpope/vim-fugitive'
+" surround
+Plug 'tpope/vim-surround'
+" code completion
+Plug 'Valloric/YouCompleteMe'
+
+" fuzzy finder
+Plug '~/.fzf'
+
+" emoji's!
+Plug 'junegunn/vim-emoji'
+
+" airline (bar at the bottom)
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" nerd tree
+Plug 'scrooloose/nerdtree'
+
+" vim wiki
+Plug 'vimwiki/vimwiki'
+
+" emmet
+Plug 'mattn/emmet-vim'
+
+" Javascript plugins
+Plug 'pangloss/vim-javascript' " javascript language support?
+Plug 'mxw/vim-jsx'
+Plug 'leshill/vim-json'
+Plug 'othree/yajs.vim' " linting!!
+
+" colorschemes
+Plug 'jacoborus/tender.vim'
+Plug 'ajh17/Spacegray.vim'
+Plug 'lifepillar/vim-solarized8'
+
+call plug#end()
