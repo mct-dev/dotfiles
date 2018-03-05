@@ -11,34 +11,34 @@ export DEFAULT_USER="$USER"
 # POWERLEVEL9K_MODE='awesome-fontconfig'
 # POWERLEVEL9K_MODE='awesome-patched'
 # POWERLEVEL9K_MODE='nerdfont-fontconfig'
-POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_MODE='nerdfont-complete'
 # POWERLEVEL9K_IP_INTERFACE=wlo1
-POWERLEVEL9K_SHORTEN_STRATEGY=truncate_middle
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon ssh context dir dir_writable vcs go_version)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_SHORTEN_STRATEGY=truncate_middle
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon ssh context dir dir_writable vcs go_version)
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status background_jobs load battery)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs load battery public_ip)
 # if [[ "$OSTYPE" == darwin* ]]; then
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status background_jobs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status background_jobs)
 # else
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 # fi
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
-POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="blue"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
+# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
+# POWERLEVEL9K_OS_ICON_BACKGROUND="white"
+# POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
+# POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+# POWERLEVEL9K_DIR_HOME_BACKGROUND="blue"
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
 ## powerlevel9k
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="juanghurtado"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -61,7 +61,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -114,8 +114,9 @@ docker git git-extras z warhol ubuntu nyan npm ruby python
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vimconfig="vim ~/.vimrc"
 alias docker-rm-dangling='docker rmi $(docker images -f "dangling=true" -q)'
 alias logout='gnome-session-quit'
 
@@ -126,57 +127,57 @@ alias logout='gnome-session-quit'
 ######## MINE ##########
 source $ZSH/oh-my-zsh.sh
 
-if [[ -x /usr/bin/grc ]]; then
-  if [ -x /bin/ls ]; then
-    function ls() {
-      \grc --colour=auto unbuffer /bin/ls --color=tty "$@"
-    }
-  fi
-  if [ -x /usr/sbin/ip ]; then
-    function ip() {
-      \grc --colour=auto /usr/sbin/ip "$@"
-    }
-  fi
-  if [ -x /usr/sbin/ss ]; then
-    function ss() {
-      \grc --colour=auto /usr/sbin/ss "$@"
-    }
-  fi
-  if [ -x /usr/bin/df ]; then
-    function df() {
-      \grc --colour=auto /usr/bin/df "$@"
-    }
-  fi
-  if [ -x /usr/bin/du ]; then
-    function du() {
-      \grc --colour=auto /usr/bin/du "$@"
-    }
-  fi
-  if [ -x /usr/bin/systemctl ]; then
-    function systemctl() {
-      \grc --colour=auto /usr/bin/systemctl "$@"
-    }
-  fi
-  if [ -x /usr/sbin/sysctl ]; then
-    function sysctl() {
-      \grc --colour=auto /usr/sbin/sysctl "$@"
-    }
-  fi
-  if [ -x /usr/bin/env ]; then
-    function env() {
-      \grc --colour=auto /usr/bin/env "$@"
-    }
-  fi
-  if [ -x /usr/bin/lsof ]; then
-    function lsof() {
-      \grc --colour=auto /usr/bin/lsof "$@"
-    }
-  fi
-fi
+# if [[ -x /usr/bin/grc ]]; then
+#   if [ -x /bin/ls ]; then
+#     function ls() {
+#       \grc --colour=auto unbuffer /bin/ls --color=tty "$@"
+#     }
+#   fi
+#   if [ -x /usr/sbin/ip ]; then
+#     function ip() {
+#       \grc --colour=auto /usr/sbin/ip "$@"
+#     }
+#   fi
+#   if [ -x /usr/sbin/ss ]; then
+#     function ss() {
+#       \grc --colour=auto /usr/sbin/ss "$@"
+#     }
+#   fi
+#   if [ -x /usr/bin/df ]; then
+#     function df() {
+#       \grc --colour=auto /usr/bin/df "$@"
+#     }
+#   fi
+#   if [ -x /usr/bin/du ]; then
+#     function du() {
+#       \grc --colour=auto /usr/bin/du "$@"
+#     }
+#   fi
+#   if [ -x /usr/bin/systemctl ]; then
+#     function systemctl() {
+#       \grc --colour=auto /usr/bin/systemctl "$@"
+#     }
+#   fi
+#   if [ -x /usr/sbin/sysctl ]; then
+#     function sysctl() {
+#       \grc --colour=auto /usr/sbin/sysctl "$@"
+#     }
+#   fi
+#   if [ -x /usr/bin/env ]; then
+#     function env() {
+#       \grc --colour=auto /usr/bin/env "$@"
+#     }
+#   fi
+#   if [ -x /usr/bin/lsof ]; then
+#     function lsof() {
+#       \grc --colour=auto /usr/bin/lsof "$@"
+#     }
+#   fi
+# fi
 
 ###-tns-completion-start-###
-if [ -f /home/mike/.tnsrc ]; then 
-    source /home/mike/.tnsrc 
+if [ -f /home/mike/.tnsrc ]; then
+    source /home/mike/.tnsrc
 fi
 ###-tns-completion-end-###
 
@@ -185,4 +186,5 @@ if [ "$TMUX" = "" ]; then
     tmux new-session \;
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fuzzy finder
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
