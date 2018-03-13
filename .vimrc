@@ -163,6 +163,12 @@ set completefunc=emoji#complete
 
 " let mapleader=","
 
+" VimWiki stuff
+let wiki = {}
+let wiki.path = '~/vimwiki/'
+let wiki.nested_syntaxes = {'javascript':'javascript', 'python':'python'}
+let g:vimwiki_list = [wiki]
+
 " colorscheme MUST go at the end to make sure it doesn't get 
 " overwritten by something else.
 colorscheme solarized8_flat 

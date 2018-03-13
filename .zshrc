@@ -6,8 +6,8 @@ export ZSH=/home/mike/.oh-my-zsh
 # Other exports
 export TERM="xterm-256color"
 
-## powerlevel9k
 export DEFAULT_USER="$USER"
+## powerlevel9k
 # POWERLEVEL9K_MODE='awesome-fontconfig'
 # POWERLEVEL9K_MODE='awesome-patched'
 # POWERLEVEL9K_MODE='nerdfont-fontconfig'
@@ -38,7 +38,7 @@ export DEFAULT_USER="$USER"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="juanghurtado"
+ZSH_THEME="af-magic"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -61,7 +61,7 @@ ZSH_THEME="juanghurtado"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -107,12 +107,6 @@ docker git git-extras z warhol ubuntu nyan npm ruby python
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -126,6 +120,7 @@ alias logout='gnome-session-quit'
 
 ######## MINE ##########
 source $ZSH/oh-my-zsh.sh
+set statusline+=%F
 
 # if [[ -x /usr/bin/grc ]]; then
 #   if [ -x /bin/ls ]; then
@@ -188,3 +183,9 @@ fi
 
 # fuzzy finder
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Key bindings
+bindkey -s '^[OQ' '/home/mike/Scripts/fix-bluetooth-lag^M'
