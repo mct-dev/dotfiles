@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/mike/.oh-my-zsh
 # Other exports
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 export DEFAULT_USER="$USER"
 ## powerlevel9k
@@ -188,4 +188,3 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Key bindings
-bindkey -s '^[OQ' '/home/mike/Scripts/fix-bluetooth-lag^M'
