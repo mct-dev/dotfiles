@@ -1,9 +1,9 @@
-cd ~
-git clone https://github.com/ryanoasis/nerd-fonts.git
-cd nerd-fonts.git && ./install.sh
-
-cd ~
-git clone https://github.com/mct-dev/dotfiles.git
+# cd ~
+# git clone https://github.com/ryanoasis/nerd-fonts.git
+# cd nerd-fonts.git && ./install.sh
+# 
+# cd ~
+# git clone https://github.com/mct-dev/dotfiles.git
 
 echo "Need to download: \n\
 	\n  Chrome \
