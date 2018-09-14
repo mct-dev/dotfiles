@@ -1,0 +1,5 @@
+pane	0	0	:vim	0	:-	0	:/home/michaelt	1	vim	:
+pane	0	1	:root@ip-172-31-82-66:/home/ec2-user	1	:*	0	:/cygdrive/c/Users/MichaelT/Downloads	1	ssh	:
+window	0	0	0	:-	b37d,129x41,0,0,0
+window	0	1	1	:*	b37e,129x41,0,0,1
+state	0	

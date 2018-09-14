@@ -1,52 +1,50 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+##### ALIASES
+alias cdwork="cd /cygdrive/c/work/"
+alias cdmt="cd /cygdrive/c/Users/MichaelT/"
+# git aliases
+alias gst="git status"
+alias gb="git branch"
+alias gl="git log --oneline"
+alias gc="git commit"
+alias gca="git commit -a"
+alias gcam="git commit -a -m"
+alias gd="git diff"
+alias gr="git remote"
+alias gra="git remote add"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gla="!git config -l | grep alias | cut -c 7-"
 
+# Example aliases
+alias zshconfig="vim ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vimconfig="vim ~/.vimrc"
+alias docker-rm-dangling='docker rmi $(docker images -f "dangling=true" -q)'
+# alias logout='gnome-session-quit'
+
+##### EXPORTS
 # Path to your oh-my-zsh installation.
-export ZSH=/home/mike/.oh-my-zsh
+export ZSH=/home/MichaelT/.oh-my-zsh
 # Other exports
 # export TERM="xterm-256color"
 
 export DEFAULT_USER="$USER"
-## powerlevel9k
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-# POWERLEVEL9K_MODE='awesome-patched'
-# POWERLEVEL9K_MODE='nerdfont-fontconfig'
-# POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_IP_INTERFACE=wlo1
-# POWERLEVEL9K_SHORTEN_STRATEGY=truncate_middle
-# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon ssh context dir dir_writable vcs go_version)
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status background_jobs load battery)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs load battery public_ip)
-# if [[ "$OSTYPE" == darwin* ]]; then
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv status background_jobs)
-# else
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
-# fi
-# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
-# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
-# POWERLEVEL9K_OS_ICON_BACKGROUND="white"
-# POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
-# POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-# POWERLEVEL9K_DIR_HOME_BACKGROUND="blue"
-# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-## powerlevel9k
+export HOSTFILE="/cygdrive/c/Windows/System32/drivers/etc/hosts"
 
+###### THEMES
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="ys"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "juanghurtado" "robbyrussell" "agnoster" "af-magic" "arrow" "fino")
+# ZSH_THEME_RANDOM_CANDIDATES=("ys" "juanghurtado" "robbyrussell" "agnoster" "af-magic" "arrow" "fino")
 
+####### RANDOM BASE CONFIG SETTINGS
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -71,11 +69,17 @@ ZSH_THEME="af-magic"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
+#
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -85,20 +89,19 @@ ZSH_THEME="af-magic"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+
+###### PLUGINS
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-docker git git-extras z warhol ubuntu nyan npm ruby python
+# docker 
+ git 
+ zsh-autosuggestions
+# git-extras 
+# npm
 )
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -107,84 +110,29 @@ docker git git-extras z warhol ubuntu nyan npm ruby python
 #   export EDITOR='mvim'
 # fi
 
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vimconfig="vim ~/.vimrc"
-alias docker-rm-dangling='docker rmi $(docker images -f "dangling=true" -q)'
-alias logout='gnome-session-quit'
-
-# JS STUFF
-# alias node to babel-node for ES6
-# alias node="babel-node"
 
 ######## MINE ##########
 source $ZSH/oh-my-zsh.sh
 set statusline+=%F
 
-# if [[ -x /usr/bin/grc ]]; then
-#   if [ -x /bin/ls ]; then
-#     function ls() {
-#       \grc --colour=auto unbuffer /bin/ls --color=tty "$@"
-#     }
-#   fi
-#   if [ -x /usr/sbin/ip ]; then
-#     function ip() {
-#       \grc --colour=auto /usr/sbin/ip "$@"
-#     }
-#   fi
-#   if [ -x /usr/sbin/ss ]; then
-#     function ss() {
-#       \grc --colour=auto /usr/sbin/ss "$@"
-#     }
-#   fi
-#   if [ -x /usr/bin/df ]; then
-#     function df() {
-#       \grc --colour=auto /usr/bin/df "$@"
-#     }
-#   fi
-#   if [ -x /usr/bin/du ]; then
-#     function du() {
-#       \grc --colour=auto /usr/bin/du "$@"
-#     }
-#   fi
-#   if [ -x /usr/bin/systemctl ]; then
-#     function systemctl() {
-#       \grc --colour=auto /usr/bin/systemctl "$@"
-#     }
-#   fi
-#   if [ -x /usr/sbin/sysctl ]; then
-#     function sysctl() {
-#       \grc --colour=auto /usr/sbin/sysctl "$@"
-#     }
-#   fi
-#   if [ -x /usr/bin/env ]; then
-#     function env() {
-#       \grc --colour=auto /usr/bin/env "$@"
-#     }
-#   fi
-#   if [ -x /usr/bin/lsof ]; then
-#     function lsof() {
-#       \grc --colour=auto /usr/bin/lsof "$@"
-#     }
-#   fi
-# fi
-
-###-tns-completion-start-###
-if [ -f /home/mike/.tnsrc ]; then
-    source /home/mike/.tnsrc
-fi
-###-tns-completion-end-###
-
-# END
 if [ "$TMUX" = "" ]; then
     tmux new-session \;
 fi
 
-# fuzzy finder
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Fix dir colors in windows
+LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+# LS_COLORS='' export LS_COLORS
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+###### PATH
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/cygdrive/c/Users/MichaelT/AppData/Roaming/npm
 
-# Key bindings
+# speed up cd into git repo when using ohmyzsh themes
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
+# set dircolors
+eval `dircolors ~/.dir_colors`

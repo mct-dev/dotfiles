@@ -1,7 +1,3 @@
-if (has("termguicolors"))
-  set termguicolors
-endif
-
 " Set compatibility to Vim only.
 set nocompatible
 " Encoding
@@ -11,7 +7,6 @@ set encoding=utf-8
 filetype on
 " tell vim it's ok to use 256 colors at terminal
 set t_Co=256
-
 " Turn on syntax highlighting.
 syntax enable
 " theme/color stuff
@@ -137,6 +132,7 @@ let g:javascript_plugin_flow=1
 " jsx extension not required
 let g:jsx_ext_required=0
 
+""""""""" BUFFERS AND WINDOWS """"""""""""""""
 " change slit window focus keybinds
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -147,8 +143,12 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" next buffer map
+nnoremap <C-N> :bnext<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""
 " toggle nerdtree
-noremap <Leader>t :NERDTreeToggle<CR>
+noremap <Leader>t :NERDTreeCWD<CR>
 
 " airline show buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -156,25 +156,37 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='angr'
 
 " nerdtree
-" let NERDTreeShowHidden=1
-
-" emoji stuff
-set completefunc=emoji#complete
+let NERDTreeShowHidden=1
 
 " let mapleader=","
 
-" VimWiki stuff
-let wiki = {}
-let wiki.path = '~/vimwiki/'
-let wiki.nested_syntaxes = {'javascript':'javascript', 'python':'python'}
-let g:vimwiki_list = [wiki]
-
-" colorscheme MUST go at the end to make sure it doesn't get 
-" overwritten by something else.
-colorscheme solarized8_flat 
-
-if &term =~ '256color'
+if (&term =~ '256color')
   " Disable Background Color Erase (BCE) so that color schemes
   " work properly when Vim is used inside tmux and GNU screen.
   set t_ut=
 endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'morhetz/gruvbox'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+" Map fuzzy finder to ctrl+p (requires Enter/<CR>; allows entering base dir for fzf search)
+map <c-p> :FZF
+
+if (!has("gui_running"))
+  set term=xterm
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+  colorscheme gruvbox
+endif
+" colorscheme MUST go at the end to make sure it doesn't get 
+" overwritten by something else.
+" colorscheme solarized8_flat
+colorscheme gruvbox
