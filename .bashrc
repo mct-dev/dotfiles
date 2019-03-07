@@ -63,3 +63,5 @@ PATH=$PATH:/c/Users/MichaelT/AppData/Roaming/npm/
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

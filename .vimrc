@@ -5,10 +5,14 @@ set encoding=utf-8
 
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype on
+" filetype plugin indent on
+
 " tell vim it's ok to use 256 colors at terminal
 set t_Co=256
+
 " Turn on syntax highlighting.
 syntax enable
+
 " theme/color stuff
 set background=dark
 
@@ -20,6 +24,11 @@ set wildmenu
 
 " turn off mouse when typing begins
 set mousehide
+
+" show tabs with 2 spaces and set 2 spaces to each tab
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 " Status Line
 " ------------
@@ -153,7 +162,7 @@ noremap <Leader>t :NERDTreeCWD<CR>
 " airline show buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='angr'
+let g:airline_theme='deus'
 
 " nerdtree
 let NERDTreeShowHidden=1
@@ -184,9 +193,8 @@ if (!has("gui_running"))
   set t_Co=256
   let &t_AB="\e[48;5;%dm"
   let &t_AF="\e[38;5;%dm"
-  colorscheme gruvbox
 endif
 " colorscheme MUST go at the end to make sure it doesn't get 
 " overwritten by something else.
 " colorscheme solarized8_flat
-colorscheme gruvbox
+" colorscheme gruvbox
