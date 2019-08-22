@@ -1,29 +1,13 @@
-###### MINE ###########
-alias cdhome="cd /mnt/c/Users/axis1/Documents"
-alias npm="/home/mike/n/bin/npm"
-alias gem="gem.exe"
-alias aws="aws.exe"
-alias az="az.exe"
-alias docker="docker.exe"
-alias terraform="terraform.exe"
-
-unsetopt auto_cd
-
 ######################
-
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.yarn/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/mike/.oh-my-zsh"
+export PATH=$PATH:$HOME/bin:/usr/local/bin
+export PATH=$PATH:$HOME/.yarn/bin
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="ys"
-LS_COLORS="ow=01;36;40" && export LS_COLORS
+ZSH_THEME="" # (ys, robbyrussel, agnoster, arrow)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,9 +61,30 @@ LS_COLORS="ow=01;36;40" && export LS_COLORS
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  aws
+  kubectl
+  docker
+  docker-compose
+  git
+)
 
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/mike/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+
+###### MINE ###########
+
+# aliases
+alias cat="bat"
+# alias python="python3"
+
+# for pure prompt
+autoload -U promptinit; promptinit
+prompt pure
+
+# kubectl completions
+# source <(kubectl completion bash)
 
 # User configuration
 
@@ -101,16 +106,38 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-eval `dircolors ~/dircolors.256dark`
+# bash completions
+# if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#     . $(brew --prefix)/etc/bash_completion
+# fi
+
+# eval `dircolors ~/dircolors.256dark`
+
+# My path additions
+export PATH=$PATH:/usr/local/aws/bin
+export PATH=$PATH:/Users/mike/go/bin
+
+# gcloud
+export CLOUDSDK_PYTHON=/usr/bin/python
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# tabtab source for aws cli (tab completion)
+source /usr/local/aws/bin/aws_zsh_completer.sh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/mike/n/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
