@@ -1,5 +1,0 @@
-pane	0	0	:vim	1	:*	0	:/cygdrive/c/work	1	vim	:
-pane	0	1	:~	0	:-	0	:/home/michaelt	1	zsh	:
-window	0	0	1	:*	bf5d,211x64,0,0,0
-window	0	1	0	:-	b75e,211x62,0,0,1
-state	0	

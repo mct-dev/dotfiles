@@ -1,3 +1,0 @@
-pane	0	0	:vim	1	:*	0	:/home/michaelt	1	vim	:
-window	0	0	1	:*	b37d,129x41,0,0,0
-state	0	
