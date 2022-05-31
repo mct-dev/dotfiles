@@ -29,9 +29,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# npm auth
-export NPM_TOKEN=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
-
 # Aliases
 alias python=python3
 alias lg="lazygit"
