@@ -1,5 +1,5 @@
 # pure prompt
-npm install --global pure-prompt
+npm list --global pure-prompt || npm install --global pure-prompt
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
