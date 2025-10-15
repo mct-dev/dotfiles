@@ -1,0 +1,7 @@
+# Ghostty Configuration
+
+# Force window decoration to use Ghostty's own rather than native
+window-decoration = true
+
+# Inherit working directory for new tabs/windows
+window-inherit-working-directory = true
