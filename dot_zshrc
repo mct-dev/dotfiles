@@ -22,7 +22,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 # $(brew --prefix)/etc/profile.d/z.sh
-. /Users/miketobias/github.com/rupa/z/z.sh
+. ~/github.com/rupa/z/z.sh
 
 
 plugins=(
@@ -40,14 +40,13 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # Aliases
-# alias vim="nvim"
 alias n="nvim"
 alias lfg="export IS_SANDBOX=1 && claude --dangerously-skip-permissions"
 alias python="python3"
 alias lg="lazygit"
 alias gt="git town"
-alias l="exa -la"
-alias ls="exa"
+alias l="eza -la"
+alias ls="eza"
 # Task Master aliases added on 4/18/2025
 alias tm='task-master'
 alias taskmaster='task-master'
@@ -132,15 +131,15 @@ esac
 # pnpm end
 
 # deno
-. "/Users/miketobias/.deno/env"
+# . "/Users/miketobias/.deno/env"
 
 # Added by Windsurf
 export PATH="/Users/miketobias/.codeium/windsurf/bin:$PATH"
 
 # Load custom functions
-for file in ~/.zsh/functions/*.zsh; do
-  [[ -r "$file" ]] && source "$file"
-done
+# for file in ~/.zsh/functions/*.zsh; do
+#   [[ -r "$file" ]] && source "$file"
+# done
 
 # secrets
 source $HOME/.zshrc_env_vars
