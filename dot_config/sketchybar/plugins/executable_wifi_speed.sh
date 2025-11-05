@@ -15,8 +15,7 @@ CURRENT_TIME=$(date +%s)
 # Initialize if file doesn't exist
 if [ ! -f "$STATS_FILE" ]; then
     echo "$CURRENT_TIME:$CURRENT_RX:$CURRENT_TX" > "$STATS_FILE"
-    sketchybar --set wifi.speed.down label="-- KB/s" \
-               --set wifi.speed.up label="-- KB/s"
+    sketchybar --set wifi.speed.label label="-- KB/s"
     exit 0
 fi
 
@@ -60,18 +59,27 @@ format_speed() {
 RX_LABEL=$(format_speed "$RX_SPEED")
 TX_LABEL=$(format_speed "$TX_SPEED")
 
-# Calculate percentage for graph (max 100 Mbps = 12,500,000 bytes/s)
-MAX_SPEED=12500000
-RX_PERCENT=$(echo "scale=2; ($RX_SPEED * 100) / $MAX_SPEED" | bc)
-TX_PERCENT=$(echo "scale=2; ($TX_SPEED * 100) / $MAX_SPEED" | bc)
+# Calculate percentage for graph (max 200 Mbps = 25,000,000 bytes/s)
+# Using higher max to reduce chance of hitting ceiling
+MAX_SPEED=25000000
+RX_PERCENT=$(echo "scale=2; ($RX_SPEED * 100) / $MAX_SPEED" | bc 2>/dev/null)
+TX_PERCENT=$(echo "scale=2; ($TX_SPEED * 100) / $MAX_SPEED" | bc 2>/dev/null)
 
-# Cap between 0 and 100
-RX_PERCENT=$(echo "$RX_PERCENT" | awk '{if($1>100) print "100"; else if($1<0) print "0"; else print $1}')
-TX_PERCENT=$(echo "$TX_PERCENT" | awk '{if($1>100) print "100"; else if($1<0) print "0"; else print $1}')
-
-# Ensure we have valid numbers (default to 0 if empty)
+# Ensure we have valid numbers (default to 0 if empty or invalid)
 RX_PERCENT=${RX_PERCENT:-0}
 TX_PERCENT=${TX_PERCENT:-0}
+
+# Cap between 0 and 100 (strict integer capping)
+RX_PERCENT=$(echo "$RX_PERCENT" | awk '{
+    if($1 == "" || $1 < 0) print "0"
+    else if($1 > 100) print "100"
+    else printf "%.0f", $1
+}')
+TX_PERCENT=$(echo "$TX_PERCENT" | awk '{
+    if($1 == "" || $1 < 0) print "0"
+    else if($1 > 100) print "100"
+    else printf "%.0f", $1
+}')
 
 # Update sketchybar items
 sketchybar --set wifi.speed.label label="$RX_LABEL" \

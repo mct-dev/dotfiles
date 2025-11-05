@@ -24,22 +24,22 @@ wifi_download=(
   width=0
   graph.color=$BLUE
   graph.fill_color=$BLUE
-  graph.height=30
   label.drawing=off
   icon.drawing=off
-  background.height=30
+  background.height=26
   background.drawing=on
   background.color=$TRANSPARENT
+  y_offset=0
 )
 
 wifi_upload=(
   graph.color=$GREEN
-  graph.height=30
   label.drawing=off
   icon.drawing=off
-  background.height=30
+  background.height=26
   background.drawing=on
   background.color=$TRANSPARENT
+  y_offset=0
 )
 
 sketchybar --add item wifi.speed.top right                \
