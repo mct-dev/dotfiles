@@ -6,25 +6,16 @@ INTERFACE="en0"
 # File to store previous stats
 STATS_FILE="/tmp/sketchybar_wifi_stats"
 
-# Get wifi signal strength
-WIFI_SSID=$(networksetup -getairportnetwork "$INTERFACE" | awk -F": " '{print $2}')
-WIFI_SIGNAL=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w "agrCtlRSSI" | awk '{print $2}')
+# Check if wifi is connected by checking interface status
+WIFI_STATUS=$(ifconfig "$INTERFACE" 2>/dev/null | grep "status:" | awk '{print $2}')
 
-# Determine wifi icon based on signal strength
-if [ "$WIFI_SSID" = "" ]; then
+# Determine wifi icon based on connection status
+if [ "$WIFI_STATUS" != "active" ]; then
     WIFI_ICON="􀙈"  # wifi.slash
     SPEED_LABEL="Disconnected"
 else
-    # RSSI typically ranges from -90 (weak) to -30 (strong)
-    if [ "$WIFI_SIGNAL" -ge -50 ]; then
-        WIFI_ICON="􀙇"  # wifi (full)
-    elif [ "$WIFI_SIGNAL" -ge -60 ]; then
-        WIFI_ICON="􀙇"  # wifi (good)
-    elif [ "$WIFI_SIGNAL" -ge -70 ]; then
-        WIFI_ICON="􀙇"  # wifi (fair)
-    else
-        WIFI_ICON="􀙇"  # wifi (weak)
-    fi
+    # Connected - use wifi icon
+    WIFI_ICON="􀙇"  # wifi icon
 
     # Get current stats
     CURRENT_STATS=$(netstat -ibn | grep -m1 "$INTERFACE" | awk '{print $7":"$10}')
