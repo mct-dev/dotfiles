@@ -13,6 +13,7 @@ wifi_label=(
   label.font="$FONT:Heavy:12"
   label="-- KB/s"
   y_offset=-4
+  padding_left=20
   padding_right=15
   width=55
   icon.drawing=off
