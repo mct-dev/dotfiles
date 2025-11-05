@@ -6,85 +6,73 @@ INTERFACE="en0"
 # File to store previous stats
 STATS_FILE="/tmp/sketchybar_wifi_stats"
 
-# Get current stats
-CURRENT_STATS=$(netstat -ibn | grep -m1 "$INTERFACE" | awk '{print $7":"$10}')
-CURRENT_RX=$(echo "$CURRENT_STATS" | cut -d':' -f1)
-CURRENT_TX=$(echo "$CURRENT_STATS" | cut -d':' -f2)
-CURRENT_TIME=$(date +%s)
+# Get wifi signal strength
+WIFI_SSID=$(networksetup -getairportnetwork "$INTERFACE" | awk -F": " '{print $2}')
+WIFI_SIGNAL=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w "agrCtlRSSI" | awk '{print $2}')
 
-# Initialize if file doesn't exist
-if [ ! -f "$STATS_FILE" ]; then
-    echo "$CURRENT_TIME:$CURRENT_RX:$CURRENT_TX" > "$STATS_FILE"
-    sketchybar --set wifi.speed.label label="-- KB/s"
-    exit 0
-fi
-
-# Read previous stats
-PREV_DATA=$(cat "$STATS_FILE")
-PREV_TIME=$(echo "$PREV_DATA" | cut -d':' -f1)
-PREV_RX=$(echo "$PREV_DATA" | cut -d':' -f2)
-PREV_TX=$(echo "$PREV_DATA" | cut -d':' -f3)
-
-# Calculate time difference
-TIME_DIFF=$((CURRENT_TIME - PREV_TIME))
-
-if [ "$TIME_DIFF" -eq 0 ]; then
-    TIME_DIFF=1
-fi
-
-# Calculate speeds (bytes per second)
-RX_SPEED=$(((CURRENT_RX - PREV_RX) / TIME_DIFF))
-TX_SPEED=$(((CURRENT_TX - PREV_TX) / TIME_DIFF))
-
-# Protect against negative values (happens when interface resets)
-if [ "$RX_SPEED" -lt 0 ]; then
-    RX_SPEED=0
-fi
-if [ "$TX_SPEED" -lt 0 ]; then
-    TX_SPEED=0
-fi
-
-# Convert to human readable format
-format_speed() {
-    local speed=$1
-    if [ "$speed" -gt 1048576 ]; then
-        # MB/s
-        echo "scale=1; $speed / 1048576" | bc | awk '{printf "%.1f MB/s", $1}'
+# Determine wifi icon based on signal strength
+if [ "$WIFI_SSID" = "" ]; then
+    WIFI_ICON="􀙈"  # wifi.slash
+    SPEED_LABEL="Disconnected"
+else
+    # RSSI typically ranges from -90 (weak) to -30 (strong)
+    if [ "$WIFI_SIGNAL" -ge -50 ]; then
+        WIFI_ICON="􀙇"  # wifi (full)
+    elif [ "$WIFI_SIGNAL" -ge -60 ]; then
+        WIFI_ICON="􀙇"  # wifi (good)
+    elif [ "$WIFI_SIGNAL" -ge -70 ]; then
+        WIFI_ICON="􀙇"  # wifi (fair)
     else
-        # KB/s
-        echo "scale=0; $speed / 1024" | bc | awk '{printf "%d KB/s", $1}'
+        WIFI_ICON="􀙇"  # wifi (weak)
     fi
-}
 
-RX_LABEL=$(format_speed "$RX_SPEED")
-TX_LABEL=$(format_speed "$TX_SPEED")
+    # Get current stats
+    CURRENT_STATS=$(netstat -ibn | grep -m1 "$INTERFACE" | awk '{print $7":"$10}')
+    CURRENT_RX=$(echo "$CURRENT_STATS" | cut -d':' -f1)
+    CURRENT_TX=$(echo "$CURRENT_STATS" | cut -d':' -f2)
+    CURRENT_TIME=$(date +%s)
 
-# Calculate percentage for graph (max 200 Mbps = 25,000,000 bytes/s)
-# Using higher max to reduce chance of hitting ceiling
-MAX_SPEED=25000000
-RX_PERCENT=$(echo "scale=2; ($RX_SPEED * 100) / $MAX_SPEED" | bc 2>/dev/null)
-TX_PERCENT=$(echo "scale=2; ($TX_SPEED * 100) / $MAX_SPEED" | bc 2>/dev/null)
+    # Initialize if file doesn't exist
+    if [ ! -f "$STATS_FILE" ]; then
+        echo "$CURRENT_TIME:$CURRENT_RX:$CURRENT_TX" > "$STATS_FILE"
+        SPEED_LABEL="-- KB/s"
+    else
+        # Read previous stats
+        PREV_DATA=$(cat "$STATS_FILE")
+        PREV_TIME=$(echo "$PREV_DATA" | cut -d':' -f1)
+        PREV_RX=$(echo "$PREV_DATA" | cut -d':' -f2)
+        PREV_TX=$(echo "$PREV_DATA" | cut -d':' -f3)
 
-# Ensure we have valid numbers (default to 0 if empty or invalid)
-RX_PERCENT=${RX_PERCENT:-0}
-TX_PERCENT=${TX_PERCENT:-0}
+        # Calculate time difference
+        TIME_DIFF=$((CURRENT_TIME - PREV_TIME))
 
-# Cap between 0 and 100 (strict integer capping)
-RX_PERCENT=$(echo "$RX_PERCENT" | awk '{
-    if($1 == "" || $1 < 0) print "0"
-    else if($1 > 100) print "100"
-    else printf "%.0f", $1
-}')
-TX_PERCENT=$(echo "$TX_PERCENT" | awk '{
-    if($1 == "" || $1 < 0) print "0"
-    else if($1 > 100) print "100"
-    else printf "%.0f", $1
-}')
+        if [ "$TIME_DIFF" -eq 0 ]; then
+            TIME_DIFF=1
+        fi
 
-# Update sketchybar items
-sketchybar --set wifi.speed.label label="$RX_LABEL" \
-           --push wifi.speed.download "$RX_PERCENT" \
-           --push wifi.speed.upload "$TX_PERCENT"
+        # Calculate download speed (bytes per second)
+        RX_SPEED=$(((CURRENT_RX - PREV_RX) / TIME_DIFF))
 
-# Save current stats for next iteration
-echo "$CURRENT_TIME:$CURRENT_RX:$CURRENT_TX" > "$STATS_FILE"
+        # Protect against negative values (happens when interface resets)
+        if [ "$RX_SPEED" -lt 0 ]; then
+            RX_SPEED=0
+        fi
+
+        # Convert to human readable format
+        if [ "$RX_SPEED" -gt 1048576 ]; then
+            # MB/s
+            SPEED_LABEL=$(echo "scale=1; $RX_SPEED / 1048576" | bc | awk '{printf "%.1f MB/s", $1}')
+        elif [ "$RX_SPEED" -gt 1024 ]; then
+            # KB/s
+            SPEED_LABEL=$(echo "scale=0; $RX_SPEED / 1024" | bc | awk '{printf "%d KB/s", $1}')
+        else
+            SPEED_LABEL="0 KB/s"
+        fi
+
+        # Save current stats for next iteration
+        echo "$CURRENT_TIME:$CURRENT_RX:$CURRENT_TX" > "$STATS_FILE"
+    fi
+fi
+
+# Update sketchybar item
+sketchybar --set wifi icon="$WIFI_ICON" label="$SPEED_LABEL"
