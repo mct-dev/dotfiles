@@ -98,7 +98,7 @@ source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/weather.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/cpu.sh"
+source "$ITEM_DIR/wifi_speed.sh"
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)
 sketchybar --update
