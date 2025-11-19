@@ -1,0 +1,523 @@
+{
+  "breadcrumbs.enabled": true,
+  "window.titleBarStyle": "custom",
+  "explorer.confirmDelete": false,
+  "editor.smoothScrolling": true,
+  "editor.formatOnType": false,
+  "editor.rulers": [
+    120
+  ],
+  // "editor.fontFamily": "'Operator Mono', 'Hack', 'Cascadia Code', 'Fira Code', 'Victor Mono', Consolas, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono', Monaco, 'Courier new', monospace, 'Operator Mono', Monaco",
+  // "editor.fontFamily": "'Monaco Regular', 'Victor Mono', Consolas, 'Courier New', monospace",
+  // "editor.fontFamily": "'Cascadia Code', 'Victor Mono', Consolas, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.fontWeight": "100",
+  "editor.fontLigatures": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  // "eslint.validate": [
+  //   "javascript",
+  //   "javascriptreact",
+  //   "typescript",
+  //   "typescriptreact"
+  // ],
+  "gitlens.advanced.messages": {
+    "suppressGitVersionWarning": true
+  },
+  "git.autorefresh": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.allowForcePush": true,
+  "git.alwaysShowStagedChangesResourceGroup": true,
+  "git.autoStash": true,
+  "emmet.includeLanguages": {
+    "razor": "html",
+    "aspnetcorerazor": "html",
+    "erb": "html",
+    "html.erb": "html"
+  },
+  "emmet.excludeLanguages": [
+    "typescript"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "*.cshtml": "razor",
+    ".cflintrc": "json",
+    "*.erb": "erb"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // "javascript.validate.enable": false,
+  "workbench.editor.closeEmptyGroups": true,
+  // VSCode Neovim Configuration
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.lua",
+  "vscode-neovim.useCtrlKeysForInsertMode": false,
+  "vscode-neovim.useCtrlKeysForNormalMode": false,
+  "vscode-neovim.foldfix": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  // Editor settings to match LazyVim behavior
+  "editor.lineNumbers": "relative",
+  "editor.cursorSurroundingLines": 8,
+  "editor.scrolloff": 8,
+  // Folding settings - prevent auto-unfold on cursor movement
+  "editor.unfoldOnClickAfterEndOfLine": false,
+  "editor.foldingStrategy": "indentation",
+  "editor.showFoldingControls": "always",
+  "terminal.integrated.enableVisualBell": false,
+  "extensions.ignoreRecommendations": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  // "javascript.preferences.quoteStyle": "double",
+  // "typescript.preferences.quoteStyle": "double",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.detectIndentation": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "git.confirmForcePush": false,
+  // "eslint.format.enable": true,
+  // "eslint.onIgnoredFiles": "warn",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "gitlens.views.repositories.branches.layout": "list",
+  "cSpell.userWords": [
+    "APPINSIGHTS",
+    "Bitgo",
+    "browserslist",
+    "checkmark",
+    "classname",
+    "cobertura",
+    "delegators",
+    "derivatization",
+    "fenwick",
+    "litecoin",
+    "luxon",
+    "macbook",
+    "microservices",
+    "middlewares",
+    "prettierrc",
+    "rebased",
+    "stylelint",
+    "stylelintrc",
+    "tailwindcss",
+    "tbody",
+    "thead",
+    "timebyping"
+  ],
+  "debug.console.wordWrap": false,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.decorations.colors": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  // "debug.allowBreakpointsEverywhere": true,
+  // "editor.accessibilitySupport": "off",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "jest.showCoverageOnLoad": false,
+  "jest.autoRun": "off",
+  "editor.tabSize": 2,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  // "files.exclude": {
+  //   "**/.classpath": true,
+  //   "**/.project": true,
+  //   "**/.settings": true,
+  //   "**/.factorypath": true
+  // },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "peacock.favoriteColors": [
+    {
+      "name": "Angular Red",
+      "value": "#dd0531"
+    },
+    {
+      "name": "Azure Blue",
+      "value": "#007fff"
+    },
+    {
+      "name": "JavaScript Yellow",
+      "value": "#f9e64f"
+    },
+    {
+      "name": "Mandalorian Blue",
+      "value": "#1857a4"
+    },
+    {
+      "name": "Node Green",
+      "value": "#215732"
+    },
+    {
+      "name": "React Blue",
+      "value": "#61dafb"
+    },
+    {
+      "name": "Something Different",
+      "value": "#832561"
+    },
+    {
+      "name": "Svelte Orange",
+      "value": "#ff3d00"
+    },
+    {
+      "name": "Vue Green",
+      "value": "#42b883"
+    }
+  ],
+  "security.workspace.trust.untrustedFiles": "open",
+  "redhat.telemetry.enabled": true,
+  "testing.automaticallyOpenPeekViewDuringAutoRun": true,
+  // "editor.linkedEditing": true,
+  "git.confirmSync": false,
+  // "eslint.useESLintClass": true,
+  "files.eol": "\n",
+  "todo-tree.general.statusBar": "total",
+  "todo-tree.filtering.excludeGlobs": [
+    "**/node_modules",
+    "**/.next/"
+  ],
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "highlight.regexes": {
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#ffcc00",
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:FIXME|BUG|UGLY|DEBUG|HACK)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc0000",
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:REVIEW|OPTIMIZE|TSC)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#00ccff",
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:IDEA)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc00cc",
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f"
+        }
+      ]
+    }
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "html.erb": "html"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "explorer.fileNesting.enabled": true,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
+  // "tabnine.experimentalAutoImports": true,
+  // "aws.profile": "env:variables",
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "deno.codeLens.test": true,
+  // "editor.suggest.showMethods": true,
+  // "editor.suggest.preview": true,
+  // "vs-kubernetes": {
+  //   "vscode-kubernetes.minikube-path.mac": "/Users/miketobias/.vs-kubernetes/tools/minikube/darwin-arm64/minikube",
+  //   "vscode-kubernetes.helm-path.mac": "/Users/miketobias/.vs-kubernetes/tools/helm/darwin-arm64/helm"
+  // },
+  // "github.copilot.enable": {
+  //   "*": false,
+  //   "plaintext": false,
+  //   "markdown": true,
+  //   "scminput": false,
+  //   "yaml": true
+  // },
+  "editor.formatOnSave": true,
+  "gitlens.autolinks": [
+    {
+      "prefix": "PRES-",
+      "url": "https://timebyping.atlassian.net/browse/PRES-<num>"
+    },
+    {
+      "prefix": "OWL-",
+      "url": "https://timebyping.atlassian.net/browse/OWL-<num>"
+    },
+    {
+      "prefix": "CORE-",
+      "url": "https://timebyping.atlassian.net/browse/CORE-<num>"
+    }
+  ],
+  "gitlens.graph.dimMergeCommits": true,
+  "gitlens.graph.showRemoteNames": true,
+  // "mdx.experimentalLanguageServer": true,
+  "editor.suggest.shareSuggestSelections": true,
+  // "svelte.enable-ts-plugin": true,
+  // "circleci.hostUrl": "",
+  "security.promptForLocalFileProtocolHandling": false,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  // "cursor.cpp.disabledLanguages": [
+  //   "plaintext",
+  //   "scminput"
+  // ],
+  "window.zoomLevel": 1,
+  // "vitest.showFailMessages": true,
+  // "vitest.enable": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.cursorBlinking": "phase",
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "symbols.hidesExplorerArrows": false,
+  // "cursor.cmdk.ghostTextAtSymbols": true,
+  "cursor.cmdk.useThemedDiffBackground": true,
+  "workbench.preferredLightColorTheme": "Github Light Theme - Gray",
+  "window.systemColorTheme": "auto",
+  "window.autoDetectColorScheme": true,
+  "workbench.editor.autoLockGroups": {
+    "jsProfileVisualizer.heapsnapshot.table": true,
+    "jsProfileVisualizer.heapprofile.table": true
+  },
+  "workbench.activityBar.location": "top",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "Cargo.toml": "Cargo.lock",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "eslint.debug": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.nodePath": "/Users/miketobias/.nvm/versions/node/v22.13.0/bin/node",
+  "svelte.enable-ts-plugin": true,
+  "workbench.iconTheme": "catppuccin-mocha",
+  "githubPullRequests.pullBranch": "never",
+  "python.venvPath": "/Users/miketobias/github.com/pinginc/enrichment-service/venv",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.updateImportsOnPaste.enabled": true,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.composer.shouldAllowCustomModes": true,
+  "vitest.nodeEnv": {
+    "DEBUG_PRINT_LIMIT": 100000
+  },
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ],
+  "cursor.composer.collapsePaneInputBoxPills": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.ts": "always",
+    "source.organizeImports": "always",
+    "source.removeUnusedImports": "always"
+  },
+  "git.blame.editorDecoration.enabled": false,
+  "editor.accessibilitySupport": "on",
+  "cursor.composer.queueMessageDefaultBehavior": "queue",
+  "liveshare.accessibility.soundsEnabled": false,
+  "accessibility.signals.clear": {
+    "announcement": "off",
+    "sound": "off"
+  },
+  "accessibility.signals.codeActionApplied": {
+    "sound": "off"
+  },
+  "accessibility.signals.codeActionTriggered": {
+    "sound": "off"
+  },
+  "accessibility.signals.editsKept": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "accessibility.signals.editsUndone": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "accessibility.signals.lineHasError": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "accessibility.signals.positionHasWarning": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "accessibility.signals.positionHasError": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "accessibility.signals.lineHasFoldedArea": {
+    "sound": "off",
+    "announcement": "off"
+  },
+  "editor.linkedEditing": true,
+  "workbench.preferredDarkColorTheme": "Noctis Minimus",
+  "amp.url": "https://ampcode.com/",
+  "amp.mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--isolated"
+      ]
+    }
+  },
+  "amp.guardedFiles.allowlist": [
+    "/Users/miketobias/github.com/pinginc/webapps/apps/webapp/.env.example"
+  ],
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "action": "allow",
+      "matches": {
+        "cmd": "cd apps/webapp && npm run lint -- --fix"
+      }
+    },
+    {
+      "tool": "Bash",
+      "action": "allow",
+      "matches": {
+        "cmd": "cd apps/webapp && mv features/admin/hooks/use-admin-web-app-separation-flag.tsx features/admin/hooks/use-admin-web-app-separation-flag.ts"
+      }
+    },
+    {
+      "tool": "Bash",
+      "action": "allow",
+      "matches": {
+        "cmd": "cd apps/webapp && npm run lint"
+      }
+    },
+    {
+      "tool": "Bash",
+      "action": "allow",
+      "matches": {
+        "cmd": "cd apps/webapp && npm run typecheck"
+      }
+    }
+  ],
+  "accessibility.signalOptions.volume": 0,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
+}
