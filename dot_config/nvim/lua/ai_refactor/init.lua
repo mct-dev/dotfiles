@@ -55,13 +55,6 @@ local function open_output_window()
   vim.api.nvim_buf_set_option(buf, "bufhidden", "hide")
   vim.api.nvim_buf_set_option(buf, "swapfile", false)
   vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-  vim.bo[buf].syntax = "markdown"
-  pcall(function()
-    -- treesitter gives better fenced code styling if parser is installed
-    if vim.treesitter and vim.treesitter.start then
-      vim.treesitter.start(buf, "markdown")
-    end
-  end)
   vim.api.nvim_buf_set_option(buf, "modifiable", true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
   vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = buf, nowait = true, silent = true })
@@ -76,7 +69,56 @@ local function strip_ansi(line)
   return line:gsub("\27%[[0-9;]*[mK]", "")
 end
 
-local function append_data(buf, data, win)
+local function guess_lang_from_path(pathname)
+  local ext = pathname:match("%.([%w%d_%-]+)$")
+  if not ext then
+    return nil
+  end
+  local map = {
+    ts = "typescript",
+    tsx = "typescriptreact",
+    js = "javascript",
+    jsx = "javascriptreact",
+    mjs = "javascript",
+    cjs = "javascript",
+    json = "json",
+    lua = "lua",
+    py = "python",
+    rs = "rust",
+    go = "go",
+    rb = "ruby",
+    sh = "bash",
+    bash = "bash",
+    zsh = "bash",
+    css = "css",
+    scss = "scss",
+    md = "markdown",
+    html = "html",
+    htm = "html",
+    cpp = "cpp",
+    cc = "cpp",
+    cxx = "cpp",
+    c = "c",
+    h = "c",
+    hpp = "cpp",
+    java = "java",
+    kt = "kotlin",
+    cs = "csharp",
+    php = "php",
+    swift = "swift",
+    m = "objective-c",
+    mm = "objective-cpp",
+    sql = "sql",
+    yaml = "yaml",
+    yml = "yaml",
+    toml = "toml",
+    xml = "xml",
+    env = "dotenv",
+  }
+  return map[ext]
+end
+
+local function append_data(buf, data, win, state)
   if not data or #data == 0 then
     return
   end
@@ -88,8 +130,37 @@ local function append_data(buf, data, win)
     local lines = {}
     for _, line in ipairs(data) do
       local clean = strip_ansi(line)
-      -- keep empty lines to preserve spacing
-      table.insert(lines, clean)
+      -- Stream-aware tag handling to make <write/> and <patch/> readable
+      if state.in_tag then
+        if clean:match("^%s*</%s*write%s*>%s*$") or clean:match("^%s*</%s*patch%s*>%s*$") then
+          table.insert(lines, "```")
+          state.in_tag = false
+          state.lang = nil
+        else
+          table.insert(lines, clean)
+        end
+      else
+        local write_file = clean:match("^%s*<%s*write%s+file=[\"']?([^\"'>]+)[\"']?%s*>%s*$")
+        local patch_id = clean:match("^%s*<%s*patch%s+id=[\"']?(%d+)[\"']?%s*>%s*$")
+        local delete_file = clean:match("^%s*<%s*delete%s+file=[\"']?([^\"'>]+)/%s*>%s*$")
+
+        if write_file then
+          local lang = guess_lang_from_path(write_file)
+          table.insert(lines, string.format("**write %s**", write_file))
+          table.insert(lines, "```" .. (lang or ""))
+          state.in_tag = true
+          state.lang = lang
+        elseif patch_id then
+          table.insert(lines, string.format("**patch id=%s**", patch_id))
+          table.insert(lines, "```")
+          state.in_tag = true
+          state.lang = nil
+        elseif delete_file then
+          table.insert(lines, string.format("**delete %s**", delete_file))
+        else
+          table.insert(lines, clean)
+        end
+      end
     end
     if #lines > 0 then
       vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
@@ -114,16 +185,17 @@ function M.run(alias)
   local root = project_root(file)
   local cmd = { runner_cmd(), file, alias }
   local buf, win = open_output_window()
+  local state = { in_tag = false, lang = nil }
 
   local job = vim.fn.jobstart(cmd, {
     cwd = root,
     stdout_buffered = false,
     stderr_buffered = false,
     on_stdout = function(_, data, _)
-      append_data(buf, data, win)
+      append_data(buf, data, win, state)
     end,
     on_stderr = function(_, data, _)
-      append_data(buf, data, win)
+      append_data(buf, data, win, state)
     end,
     on_exit = function(_, code, _)
       vim.schedule(function()
