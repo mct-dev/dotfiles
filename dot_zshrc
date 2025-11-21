@@ -7,10 +7,19 @@
 
 export EDITOR=nvim
 
-# pure prompt
-fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
-prompt pure
+# prompt setup (guarded)
+if [ -d "$HOME/.zsh/pure" ]; then
+  fpath+=("$HOME/.zsh/pure")
+  autoload -U promptinit; promptinit
+  prompt pure
+else
+  echo "pure prompt not found in \$HOME/.zsh/pure; installing with: git clone https://github.com/sindresorhus/pure \$HOME/.zsh/pure" >&2
+  mkdir -p "$HOME/.zsh"
+  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+  fpath+=($HOME/.zsh/pure)
+  autoload -U promptinit; promptinit
+  prompt pure
+fi
 
 # export ZSH_THEME="arrow"
 # export ZSH="$HOME/.oh-my-zsh"
@@ -135,4 +144,28 @@ source $HOME/.zshrc_env_vars
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Install or refresh ai-refactor (Taelin-style refactor workflow)
+ai_refactor_install() {
+  local root="${HOME}/.config/ai-scripts"
+  if [ ! -d "${root}" ]; then
+    echo "ai-scripts not found at ${root}. Clone or apply chezmoi first." >&2
+    return 1
+  fi
 
+  if ! command -v bun >/dev/null 2>&1; then
+    echo "bun is required. Install bun (https://bun.sh) and re-run." >&2
+    return 1
+  fi
+
+  (cd "${root}" && bun install)
+
+  mkdir -p "${HOME}/.local/bin"
+  cat > "${HOME}/.local/bin/ai-refactor" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+cd "${HOME}/.config/ai-scripts"
+exec bun run Refactor.ts "$@"
+EOF
+  chmod +x "${HOME}/.local/bin/ai-refactor"
+  echo "ai-refactor installed. Ensure tokens exist at ~/.config/{openai,anthropic,google}.token"
+}

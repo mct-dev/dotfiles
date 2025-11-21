@@ -1,0 +1,60 @@
+{
+  "name": "tai_scripts",
+  "version": "0.2.0",
+  "description": "Taelin AI Scripts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "bin": {
+    "refactor": "./dist/refactor.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc && node scripts/build-esm-wrapper.js",
+    "prepare": "npm run build",
+    "test": "node test-import.ts",
+    "test:esm": "node --input-type=module test-import.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victortaelin/ai-scripts.git"
+  },
+  "keywords": [
+    "ai"
+  ],
+  "author": "VictorTaelin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victortaelin/ai-scripts/issues"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@google/genai": "^1.29.1",
+    "@openrouter/ai-sdk-provider": "^0.4.5",
+    "@portkey-ai/gateway": "^1.9.15",
+    "apify-client": "^2.12.2",
+    "commander": "^13.1.0",
+    "gateway": "^1.0.0",
+    "googleapis": "^148.0.0",
+    "gpt-tokenizer": "^2.9.0",
+    "groq-sdk": "^0.19.0",
+    "ignore": "^7.0.3",
+    "minimist": "^1.2.8",
+    "oauth-1.0a": "^2.2.6",
+    "openai": "^4.95.0",
+    "portkey-ai": "^1.8.0",
+    "typescript": "^5.8.3"
+  },
+  "homepage": "https://github.com/victortaelin/ai-scripts#readme",
+  "devDependencies": {
+    "@types/minimist": "^1.2.5"
+  }
+}
