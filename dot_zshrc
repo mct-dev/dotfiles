@@ -57,11 +57,12 @@ plugins=(
 # Aliases
 alias n="nvim"
 alias lfg="export IS_SANDBOX=1 && claude --dangerously-skip-permissions"
+alias lfgc="codex --dangerously-bypass-approvals-and-sandbox"
 alias python="python3"
 alias lg="lazygit"
-alias gt="git town"
 alias l="eza -la"
 alias ls="eza"
+alias openlrl="open -n -a /Applications/Laurel-Assistant.app && open -n -a /Applications/Laurel-Assistant.app --args dev"
 # Task Master aliases added on 4/18/2025
 alias tm='task-master'
 alias taskmaster='task-master'
@@ -69,13 +70,15 @@ alias tf="terraform"
 alias k="kubectl"
 alias gl-releasable="/usr/local/bin/git-log-releasable.sh"
 alias myip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
+alias aero="cat ~/.config/aerospace/cheatsheet.md"
 
 # golang
 export GOPATH="$HOME/go"
 export PATH="/Users/miketobias/.local/bin:$GOPATH/bin:$PATH"
 
-# bun completions
+# Completions
 [ -s "/Users/miketobias/.bun/_bun" ] && source "/Users/miketobias/.bun/_bun"
+source "/Users/miketobias/.zsh/completions/squad-completion"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -139,6 +142,7 @@ esac
 # secrets
 source $HOME/.zshrc_env_vars
 
+
 # [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 #
 export PATH="$HOME/bin:$PATH"
@@ -148,3 +152,44 @@ export PATH="$HOME/.local/bin:$PATH"
 if [ -f "${HOME}/.zshrc.d/ai_refactor.sh" ]; then
   source "${HOME}/.zshrc.d/ai_refactor.sh"
 fi
+
+###-begin-pm2-completion-###
+### credits to npm for the completion file model
+#
+# Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
+#
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+if type complete &>/dev/null; then
+  _pm2_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           pm2 completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -o default -F _pm2_completion pm2
+elif type compctl &>/dev/null; then
+  _pm2_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       pm2 completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _pm2_completion + -f + pm2
+fi
+###-end-pm2-completion-###
